@@ -4,3 +4,6 @@ pro_stages_accueil:
 pro_stages_entreprises:
     path: /entreprises
     controller: App\Controller\ProStagesController::entreprises
+pro_stages_formations:
+    path: /formations
+    controller: App\Controller\ProStagesController::formations
