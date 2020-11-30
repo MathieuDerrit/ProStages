@@ -27,3 +27,11 @@ public function formations(): Response
         'controller_name' => 'Cette page affichera la liste des formations de l\'IUT',
     ]);
 }
+public function stages(): Response
+{
+    return $this->render('pro_stages/stages.html.twig', [
+        'controller_name' => "Cette page affichera le descriptif du stage ayant pour identifiant ".$id,
+    ]);
+}
+
+?>
