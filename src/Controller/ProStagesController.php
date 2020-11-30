@@ -14,3 +14,10 @@ class ProStagesController extends AbstractController
             'controller_name' => 'Bienvenue sur la page d\'accueil de Prostages',
         ]);
     }
+}
+public function entreprises(): Response
+{
+    return $this->render('pro_stages/entreprises.html.twig', [
+        'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage',
+    ]);
+}
