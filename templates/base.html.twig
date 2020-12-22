@@ -3,21 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}ProStages{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- BLOC DES FEUILLES DE STYLE -->
+        {% block stylesheets %}
+        <link href="{{asset('/css/bootstrap.min.css')}}">
+        {% endblock %}
     </head>
     <body>
+        <!-- BLOC DU SLIDER -->
         {% block slider %}
         <h1> ---------- SLIDER ---------- </h1>
         {% endblock %}
+        <!-- BLOC DU MENU -->
         {% block menu %}
         <h1> ---------- MENU ---------- </h1>
         {% endblock %}
+        <!-- BLOC DU CONTENU DE LA PAGE -->
         {% block contenu %}
         {% endblock %}
+        <!-- BLOC DU PIED DE PAGE -->
         {% block footer %}
         <h1> ---------- FOOTER ---------- </h1>
         {% endblock %}
+        <!-- BLOC JAVASCRIPT -->
         {% block javascripts %}
+        <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
         {% endblock %}
     </body>
 </html>
