@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\StagesRepository;
+use App\Repository\StageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=StagesRepository::class)
+ * @ORM\Table(name="Stage")
+ * @ORM\Entity(repositoryClass=StageRepository::class)
  */
-class Stages
+class Stage
 {
     /**
      * @ORM\Id

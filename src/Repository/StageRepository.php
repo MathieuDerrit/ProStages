@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Stages;
+use App\Entity\Stage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Stages|null find($id, $lockMode = null, $lockVersion = null)
- * @method Stages|null findOneBy(array $criteria, array $orderBy = null)
- * @method Stages[]    findAll()
- * @method Stages[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Stage|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Stage|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Stage[]    findAll()
+ * @method Stage[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StagesRepository extends ServiceEntityRepository
+class StageRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Stages::class);
+        parent::__construct($registry, Stage::class);
     }
 
     // /**
-    //  * @return Stages[] Returns an array of Stages objects
+    //  * @return Stage[] Returns an array of Stage objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class StagesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Stages
+    public function findOneBySomeField($value): ?Stage
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
