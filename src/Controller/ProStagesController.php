@@ -8,14 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Repository\StageRepository;
+use App\Repository\EntrepriseRepository;
+use App\Repository\FormationRepository;
 
 class ProStagesController extends AbstractController
 {
-    public function index(): Response
+    public function index(StageRepository $repositoryStage): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-
         // Récupérer les stages enregistrées en BD
         $stages = $repositoryStage->findAll();
 
@@ -24,11 +24,8 @@ class ProStagesController extends AbstractController
           'controller_name' => 'Bienvenue sur la page d\'accueil de Prostages','stages' => $stages,
         ]);
     }
-    public function entreprises(): Response
+    public function entreprises(EntrepriseRepository $repositoryEntreprise): Response
     {
-        // Récupérer le repository de l'entité Entreprise
-        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
-
         // Récupérer les entreprises enregistrées en BD
         $entreprises = $repositoryEntreprise->findAll();
 
@@ -36,11 +33,8 @@ class ProStagesController extends AbstractController
             'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage', 'entreprises' => $entreprises,
         ]);
     }
-    public function formations(): Response
+    public function formations(FormationRepository $repositoryFormation): Response
     {
-        // Récupérer le repository de l'entité Formation
-        $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
-
         // Récupérer les formations enregistrées en BD
         $formations = $repositoryFormation->findAll();
 
@@ -48,40 +42,22 @@ class ProStagesController extends AbstractController
             'controller_name' => 'Cette page affichera la liste des formations de l\'IUT', 'formations' => $formations,
         ]);
     }
-    public function formation($id): Response
+    public function formation(Formation $formation): Response
     {
-        // Récupérer le repository de l'entité Formation
-        $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
-
-        // Récupérer les formations enregistrées en BD
-        $formation = $repositoryFormation->find($id);
-
         return $this->render('pro_stages/formation.html.twig', [
             'formation' => $formation,
         ]);
     }
-    public function stages($id): Response
+    public function stages(Stage $stage): Response
     {
-        // Récupérer le repository de l'entité Stage
-        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-
-        // Récupérer le stage enregistrées en BD
-        $stage = $repositoryStage->find($id);
-
         return $this->render('pro_stages/stages.html.twig', [
-            'controller_name' => "Cette page affichera le descriptif du stage ayant pour identifiant ".$id, 'stage' => $stage,
+            'controller_name' => "Cette page affichera le descriptif du stage ayant pour identifiant ", 'stage' => $stage,
     ]);
     }
 
     /*Page qui affiche l'entrepise correspondant à l'id */
-    public function entreprise($id): Response
+    public function entreprise(Entreprise $entreprise): Response
     {
-        // Récupérer le repository de l'entité Entreprise
-        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
-
-        // Récupérer les entreprises enregistrées en BD
-        $entreprise = $repositoryEntreprise->find($id);
-
         return $this->render('pro_stages/entreprise.html.twig', [
             'entreprise' => $entreprise,
         ]);
