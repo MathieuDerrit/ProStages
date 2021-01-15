@@ -63,7 +63,7 @@ class ProStagesController extends AbstractController
     public function stages($id): Response
     {
         // Récupérer le repository de l'entité Stage
-        $repositoryStage = $this->getDoctrine()->getRepository(Formation::class);
+        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
         // Récupérer le stage enregistrées en BD
         $stage = $repositoryStage->find($id);

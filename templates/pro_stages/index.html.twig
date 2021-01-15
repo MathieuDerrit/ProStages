@@ -1,10 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block titrePage %}
-<div class="example-wrapper">
-    <h1>{{ controller_name }}</h1>
-</div>
-Stages disponibles{% endblock %}
+{% block titrePage %}Stages disponibles{% endblock %}
 
 {% block contenuPage %}
 <div class="table-responsive">
@@ -22,7 +18,7 @@ Stages disponibles{% endblock %}
     <tbody>
         {% for stageCourant in stages %}
           {# on rajoute une ligne pour chaque stage #}
-          <tr>
+          <tr onclick="window.location='{{path('pro_stages_stages', {'id' : stageCourant.id })}}';">
             <th scope="row">{{loop.index}}</th>
             <td>{{stageCourant.titre}}</td>
             <td>{{stageCourant.entreprise.nom}}</td>
