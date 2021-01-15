@@ -3,5 +3,30 @@
 {% block titrePage %}Stage(s) de la formation {{formation.titre}}{% endblock %}
 
 {% block contenuPage %}
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titre</th>
+          <th scope="col">Entreprise</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stageCourant in formation.stages %}
+          {# on rajoute une ligne pour chaque stage #}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{stageCourant.titre}}</td>
+            <td>{{stageCourant.entreprise.nom}}</td>
+            <td>{{stageCourant.entreprise.adresse}}</td>
+            <td>{{stageCourant.email}}</td>
+          </tr>
 
+  {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
