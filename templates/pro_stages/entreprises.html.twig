@@ -17,7 +17,7 @@
     <tbody>
         {% for entreprise in entreprises %}
           {# on rajoute une ligne pour chaque stage #}
-          <tr onclick="window.location='{{path('pro_stages_entreprise', {'id' : entreprise.id })}}';">
+          <tr class="cursor-pointer" onclick="window.location='{{path('pro_stages_entreprise', {'id' : entreprise.id })}}';">
             <th scope="row">{{loop.index}}</th>
             <td> {{entreprise.nom}} </td>
             <td>{{entreprise.activite}}</td>

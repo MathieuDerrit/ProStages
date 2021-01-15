@@ -19,27 +19,27 @@ class ProStagesController extends AbstractController
         // Récupérer les stages enregistrées en BD
         $stages = $repositoryStage->findAll();
 
-        // Envoyer un texte dans la variable controller_name et dans la variable stages les stages récupérées à la vue chargée de les afficher
+        // Envoyer les les stages récupérées à la vue chargée de les afficher
         return $this->render('pro_stages/index.html.twig', [
-          'controller_name' => 'Bienvenue sur la page d\'accueil de Prostages','stages' => $stages,
+          'stages' => $stages,
         ]);
     }
     public function entreprises(EntrepriseRepository $repositoryEntreprise): Response
     {
         // Récupérer les entreprises enregistrées en BD
         $entreprises = $repositoryEntreprise->findAll();
-
+        // Envoyer les entreprises récupérées à la vue chargée de les afficher
         return $this->render('pro_stages/entreprises.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des entreprises proposant un stage', 'entreprises' => $entreprises,
+            'entreprises' => $entreprises,
         ]);
     }
     public function formations(FormationRepository $repositoryFormation): Response
     {
         // Récupérer les formations enregistrées en BD
         $formations = $repositoryFormation->findAll();
-
+        // Envoyer les formations récupérées à la vue chargée de les afficher
         return $this->render('pro_stages/formations.html.twig', [
-            'controller_name' => 'Cette page affichera la liste des formations de l\'IUT', 'formations' => $formations,
+            'formations' => $formations,
         ]);
     }
     public function formation(Formation $formation): Response
@@ -48,14 +48,14 @@ class ProStagesController extends AbstractController
             'formation' => $formation,
         ]);
     }
+    /*Page qui affiche le stage correspondant à $stage */
     public function stages(Stage $stage): Response
     {
         return $this->render('pro_stages/stages.html.twig', [
-            'controller_name' => "Cette page affichera le descriptif du stage ayant pour identifiant ", 'stage' => $stage,
+            'stage' => $stage,
     ]);
     }
-
-    /*Page qui affiche l'entrepise correspondant à l'id */
+    /*Page qui affiche l'entrepise correspondant à $entreprise */
     public function entreprise(Entreprise $entreprise): Response
     {
         return $this->render('pro_stages/entreprise.html.twig', [

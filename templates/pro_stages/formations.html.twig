@@ -16,7 +16,7 @@
     <tbody>
         {% for formation in formations %}
           {# on rajoute une ligne pour chaque formation #}
-          <tr onclick="window.location='{{path('pro_stages_formation', {'id' : formation.id })}}';">
+          <tr class="cursor-pointer" onclick="window.location='{{path('pro_stages_formation', {'id' : formation.id })}}';">
             <th scope="row">{{loop.index}}</th>
             <td> {{formation.titre}} </td>
             <td>{{formation.description}}</td>
