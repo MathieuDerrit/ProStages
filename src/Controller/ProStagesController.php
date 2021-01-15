@@ -60,5 +60,19 @@ class ProStagesController extends AbstractController
             'controller_name' => "Cette page affichera le descriptif du stage ayant pour identifiant ".$id, 'stage' => $stage,
     ]);
     }
+
+    /*Page qui affiche l'entrepise correspondant à l'id */
+    public function entreprise($id): Response
+    {
+        // Récupérer le repository de l'entité Entreprise
+        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+
+        // Récupérer les entreprises enregistrées en BD
+        $entreprise = $repositoryEntreprise->find($id);
+
+        return $this->render('pro_stages/entreprise.html.twig', [
+            'entreprise' => $entreprise,
+        ]);
+    }
 }
 ?>
