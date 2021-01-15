@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\stage;
 use App\Entity\Entreprise;
+use App\Entity\Formation;
 
 class AppFixtures extends Fixture
 {
@@ -13,6 +14,39 @@ class AppFixtures extends Fixture
     {
         /* Création d'un générateur de données à partir de la classe Faker*/
         $faker = \Faker\Factory::create('fr_FR');
+
+        /***************************************
+        ***     CREATION DES FORMATIONS      ***
+        ****************************************/
+        $DUTInfo = new Formation();
+        $DUTInfo -> setTitre("DUT Informatique");
+        $DUTInfo -> setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+
+        $DUTGIM = new Formation();
+        $DUTGIM -> setTitre("DUT GIM");
+        $DUTGIM -> setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+
+        $LPPOO = new Formation();
+        $LPPOO -> setTitre("LP Programmation avancée");
+        $LPPOO -> setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+
+        $LPNum = new Formation();
+        $LPNum -> setTitre("LP Numérique");
+        $LPNum -> setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+
+        $DUTGEA = new Formation();
+        $DUTGEA -> setTitre("DUT GEA");
+        $DUTGEA -> setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+
+        /* On regroupe les objets "formation" dans un tableau
+        pour pouvoir s'y référer au moment de la création d'un stage  */
+        $tableauFormations = array($DUTInfo, $DUTGIM, $LPPOO, $LPNum, $DUTGEA);
+
+        // Mise en persistance des objets formation
+        foreach ($tableauFormations as $formation) {
+          $manager->persist($formation);
+        }
+
 
         /***************************************
         ***     CREATION DES ENTREPRISES     ***
@@ -52,11 +86,21 @@ class AppFixtures extends Fixture
                 $stage -> setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
                 $stage -> setEmail($faker->email);
                 $stage -> setEntreprise($entreprise);
+
                 // Création relation Stage -- Entreprise
                 $entreprise -> addStage($stage);
 
+                // Création relation Stage -- Formation
+                $nbFormation = $faker->numberBetween($min = 1, $max = 4);
+                for($i = 0; $i < $nbFormation; $i++){
+                  $numFormation = $faker->numberBetween($min = 0, $max = 4);
+                  $stage -> addFormation($tableauFormations[$numFormation]);
+                }
+
                 // Persister les stages
                 $manager->persist($stage);
+                // Persister les formations
+                $manager->persist($tableauFormations[$numFormation]);
             }
           }
 
