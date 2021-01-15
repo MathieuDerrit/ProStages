@@ -48,6 +48,18 @@ class ProStagesController extends AbstractController
             'controller_name' => 'Cette page affichera la liste des formations de l\'IUT', 'formations' => $formations,
         ]);
     }
+    public function formation($id): Response
+    {
+        // Récupérer le repository de l'entité Formation
+        $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
+
+        // Récupérer les formations enregistrées en BD
+        $formation = $repositoryFormation->find($id);
+
+        return $this->render('pro_stages/formation.html.twig', [
+            'formation' => $formation,
+        ]);
+    }
     public function stages($id): Response
     {
         // Récupérer le repository de l'entité Stage

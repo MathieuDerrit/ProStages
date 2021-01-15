@@ -95,6 +95,7 @@ class AppFixtures extends Fixture
                 for($i = 0; $i < $nbFormation; $i++){
                   $numFormation = $faker->numberBetween($min = 0, $max = 4);
                   $stage -> addFormation($tableauFormations[$numFormation]);
+                  $tableauFormations[$numFormation] -> addStage($stage);
                 }
 
                 // Persister les stages
